@@ -7,7 +7,7 @@ Generic
 
 package veremPkg is
 
-        NullPtr : Exception;
+        EmptyStack : Exception;
 
          type Stack is new Limited_Controlled with private;
 

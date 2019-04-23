@@ -20,7 +20,7 @@ package body veremPkg is
                 N: Access_Node;
             begin
                 if S.Head = Null then 
-                    raise NullPtr;
+                    raise EmptyStack;
                 end if;
 
                 N := S.Head;
@@ -37,8 +37,8 @@ package body veremPkg is
             end loop;
 
             exception
-            when NullPtr => null;
-            Ada.Text_IO.Put("Lefutott a finalize");
+            when EmptyStack => null;
+            --Ada.Text_IO.Put("Lefutott a finalize");
         end Finalize;
 
         procedure Pop(S: in out Stack; E: out Element) is

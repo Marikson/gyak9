@@ -50,8 +50,24 @@ begin
     Pop(Verem, Abba);
     assert(IsEmpty(Verem), "Pusholt majd Popolt verem ures");
     assert(Verem.Size = 0, "Veremben levo elemszam: 0");
-
 end Test_Pop;
+
+procedure Test_Pop_on_empty is 
+    Verem: Stack;
+    Abba: Integer;
+    Helyes: Boolean;
+begin 
+    Helyes := false;
+
+    begin
+        Pop(Verem, Abba);
+    exception
+        when EmptyStack => Helyes := true;
+        when others => null;
+    end;
+
+    assert(Helyes, "Ures verembol olvasas hibat dob");
+end Test_Pop_on_empty;
 
 procedure Test_Top is 
     Verem: Stack;
@@ -70,6 +86,7 @@ begin
 
 Test_NewStack;
 Test_Pop;
+Test_Pop_on_empty;
 Test_Push;
 Test_Top;
 
@@ -83,7 +100,7 @@ Test_Top;
 --end loop;
 
 
-exception
-when NullPtr => Ada.Text_IO.Put("Nincs hozzaferes a mutatott ertekhez!");
+--exception
+--when NullPtr => Ada.Text_IO.Put("Nincs hozzaferes a mutatott ertekhez!");
 
 end Test;
