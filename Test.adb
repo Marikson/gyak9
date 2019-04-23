@@ -13,12 +13,12 @@ use EgeszVeremPkg;
 procedure assert(felt: Boolean; uzenet: String) is 
 
 begin
-    Ada.Text_IO.Put(uzenet & ": ");
     if felt then 
-        Ada.Text_IO.Put("passed");
+        Ada.Text_IO.Put("PASSED");
     else
-        Ada.Text_IO.Put("failed");  
+        Ada.Text_IO.Put("!!!FAILED!!!");  
     end if;
+    Ada.Text_IO.Put(": " & uzenet);
     Ada.Text_IO.New_line;
 end assert;
 
@@ -67,6 +67,7 @@ begin
     end;
 
     assert(Helyes, "Ures verembol olvasas hibat dob");
+
 end Test_Pop_on_empty;
 
 procedure Test_Top is 
@@ -79,6 +80,25 @@ begin
 
 end Test_Top;
 
+procedure Test_Top_on_empty is 
+    Verem: Stack;
+    Abba: Integer;
+    Helyes: Boolean;
+begin 
+    Helyes := false;
+
+    begin
+        Abba := Top(Verem);
+    exception
+        when EmptyStack => Helyes := true;
+        when others => null;
+    end;
+
+    assert(Helyes, "Ures verem toppolasa hibat dob");
+
+end Test_Top_on_empty;
+
+
 Verem: Stack;
 --Ebbe: Integer;
 
@@ -89,6 +109,7 @@ Test_Pop;
 Test_Pop_on_empty;
 Test_Push;
 Test_Top;
+Test_Top_on_empty;
 
 
 

@@ -37,7 +37,7 @@ package veremPkg is
             Head: Access_Node := Null;
         end record;
 
-        
-        
+
+
 
 end veremPkg;
