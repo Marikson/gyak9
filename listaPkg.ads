@@ -2,18 +2,18 @@ Generic
     type Element is private;
 
 package listaPkg is
-    type Lista is private;
-    EmptyList: constant Lista;
+    type Lista is limited private;
 
     NoValue: exception;
     
     function IsEmpty(L: Lista) return Boolean;
-    function Add(L: Lista; E: Element) return Lista;
+    procedure Add(L: in out Lista; E: in Element);
     function Read(L: Lista) return Element;
+    procedure Remove(L: in out Lista);
 private
 
     type Node;
-    type Lista is access constant Node; 
+    type Lista is access Node; 
     EmptyList: constant Lista := null;
 
     type Node is record

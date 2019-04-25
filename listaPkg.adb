@@ -1,14 +1,15 @@
-package body listaPkg is 
+With Ada.Unchecked_Deallocation;
 
+package body listaPkg is
+ 
 function IsEmpty(L: Lista) return Boolean is
 begin
     return L = EmptyList;
 end IsEmpty;
 
-
-function Add(L: Lista; E: Element) return Lista is
+procedure Add(L: in out Lista; E: in Element) is
 begin
-    return new Node'(Value => E, Next => L);
+    L := new Node'(Value => E, Next => L);
 end Add;
 
 function Read(L: Lista) return Element is 
@@ -18,6 +19,19 @@ begin
     end if;
     return L.Value;
 end Read;
+
+Procedure Free Is New Ada.Unchecked_Deallocation(Node, Lista);
+
+procedure Remove(L: in out Lista) is
+    K: Lista;
+begin 
+    if IsEmpty(L) then 
+        raise NoValue;
+    end if;
+    K := L.Next;
+    Free(L);
+    L := K;
+end Remove;
 
 
 end listaPkg;
