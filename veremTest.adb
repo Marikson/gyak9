@@ -1,7 +1,7 @@
 with veremPkg;
 with Ada.Text_IO;
 
-procedure Test is
+procedure veremTest is
 
 package EgeszVeremPkg is new veremPkg (
     Element => Integer
@@ -99,9 +99,6 @@ begin
 end Test_Top_on_empty;
 
 
-Verem: Stack;
---Ebbe: Integer;
-
 begin 
 
 Test_NewStack;
@@ -110,8 +107,6 @@ Test_Pop_on_empty;
 Test_Push;
 Test_Top;
 Test_Top_on_empty;
-
-
 
 
 --for i in 1..10 loop
@@ -124,4 +119,4 @@ Test_Top_on_empty;
 --exception
 --when NullPtr => Ada.Text_IO.Put("Nincs hozzaferes a mutatott ertekhez!");
 
-end Test;
+end veremTest;
